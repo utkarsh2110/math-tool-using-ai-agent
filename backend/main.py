@@ -88,13 +88,23 @@ TOOLS = {"math_solver": math_solver, "web_search": web_search}
 ALL_TOOLS = [math_solver_tool, search_tool]
 
 
+SYSTEM_PROMPT = (
+    "You are a helpful assistant with math and search tools. "
+    "When your answer contains mathematical expressions, wrap them in LaTeX "
+    "delimiters: $...$ for inline math and $$...$$ for display math. "
+    "For example, write the derivative as $3x^2 + 2$, not as 3*x**2 + 2."
+)
+
 def call_model(history):
     for attempt in range(3):
         try:
             return client.models.generate_content(
                 model=MODEL,
                 contents=history,
-                config=types.GenerateContentConfig(tools=ALL_TOOLS)
+                config=types.GenerateContentConfig(
+                    tools=ALL_TOOLS,
+                    system_instruction=SYSTEM_PROMPT
+                )
             )
         except errors.ClientError as e:
             if "429" in str(e):
