@@ -85,6 +85,16 @@
     <button id="go">Ask</button>
   </div>
 
+  <div class="hint">Use <code>**</code> for powers, <code>*</code> for multiply — e.g. <code>x**2 * sin(x)</code>. Plain English works too: "integrate x squared times sine x".</div>
+  <div class="symbols" id="symbols">
+    const SYMBOLS = [["x²","**2"],["√","sqrt("],["π","pi"],["∫","integrate "],["sin","sin("],["cos","cos("]];
+SYMBOLS.forEach(([label, insert]) => {
+  const b = document.createElement("button");
+  b.className = "chip"; b.textContent = label;
+  b.onclick = () => { q.value += insert; q.focus(); };
+  document.getElementById("symbols").appendChild(b);
+});</div>     
+  
   <div class="examples" id="chips"></div>
 
   <div class="card hidden" id="answerCard">
