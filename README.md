@@ -4,7 +4,7 @@ An LLM agent that autonomously decides whether to solve symbolic mathematics, se
 
 The goal of this project was to understand agent architecture from first principles rather than through a framework abstraction.
 
-![demo](demo.png)
+[![demo](demo.png)](https://math-tool-using-ai-agent.onrender.com)
 
 ---
 
